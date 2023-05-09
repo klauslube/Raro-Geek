@@ -2,6 +2,6 @@
 
 class Store < ApplicationRecord
   has_many :storages, dependent: :destroy
-  has_many :sales
+  has_many :sales, dependent: :destroy
   has_many :products, through: :storages
 end

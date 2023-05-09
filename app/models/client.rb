@@ -3,5 +3,5 @@
 class Client < ApplicationRecord
   belongs_to :address
 
-  has_many :sales
+  has_many :sales, dependent: :destroy
 end
