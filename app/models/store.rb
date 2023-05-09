@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Store < ApplicationRecord
   has_many :storages, dependent: :destroy
   has_many :sales
