@@ -2,7 +2,7 @@ class Sale < ApplicationRecord
   belongs_to :client
   belongs_to :store
 
-  has_many :sale_products
+  has_many :sale_products, dependent: :destroy
   has_many :products, through: :sale_products
 
 
