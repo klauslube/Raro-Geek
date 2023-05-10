@@ -7,23 +7,28 @@ class SaleProduct < ApplicationRecord
   validates :quantity, presence: true
   validates :quantity, numericality: { only_integer: true, minimum: 1 }
 
-
-  scope :for_product_and_store, ->(product_id, store_id) { 
-    where(product_id: product_id, sale_id: Sale.where(store_id: store_id).pluck(:id))
-  }
-
-  validate :validate_quantity_for_sale_product
+  validate :validate_product_availability
 
   private
 
-  def validate_quantity_for_sale_product
+  def validate_product_availability
     if quantity > available_quantity
       errors.add(:quantity, "is greater than the available quantity")
     end
   end
 
   def available_quantity
-    Storage.for_product_and_store(product_id, sale.store_id).sum(:quantity)
+    Storage.where(store_id: sale.store_id, product_id: product_id).sum(:quantity)
   end
 
+
+  after_save :set_total_amount
+
+  def set_total_amount
+    total = 0
+    sale_products.each do |sale_product|
+      total += sale_product.quantity * sale_product.product.unit_price.to_f
+    end
+    sale.update(total_amount: total)
+  end
 end
