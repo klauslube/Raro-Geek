@@ -15,6 +15,6 @@ class Sale < ApplicationRecord
   }, scopes: true, default: :pending_payment
 
   validates :status, presence: { in: %i[pending_payment paid overdue cancelled] }
-  validates :fiscal_number, presence: true ,uniqueness: true, length: { maximum: 20 }
-  validates :total_amount, presence: true ,numericality: { greater_than_or_equal_to: 0 }
+  validates :fiscal_number, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :total_amount, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end
