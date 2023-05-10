@@ -7,7 +7,7 @@ class CreateSales < ActiveRecord::Migration[7.0]
       t.references :store, null: false, foreign_key: true
       t.string :fiscal_number, null: false, limit: 20
       t.decimal :total_amount, null: false, precision: 10, scale: 2, default: 0
-      t.boolean :status, null: false, default: false
+      t.boolean :finished, null: false, default: false
 
       t.timestamps
     end
