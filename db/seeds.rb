@@ -29,11 +29,11 @@ Store.create(address_id: 2, name: 'Store 2', CNPJ: '56789012345678')
 
 # Storages
 Storage.create(product_id: 1, store_id: 1, quantity: 10)
-Storage.create(product_id: 2, store_id: 1, quantity: 20)
+Storage.create(product_id: 2, store_id: 1, quantity: 30)
 
 # Sales
-Sale.create(client_id: 1, store_id: 1, fiscal_number: '123456789', total_amount: 100.00, status: 1)
-Sale.create(client_id: 2, store_id: 1, fiscal_number: '987654321', total_amount: 200.00, status: 1)
+Sale.create(client_id: 1, store_id: 1, fiscal_number: '123456789', total_amount: 100.00, finished: true)
+Sale.create(client_id: 2, store_id: 1, fiscal_number: '987654321', total_amount: 200.00, finished: true)
 
 # SaleProducts
 SaleProduct.create(sale_id: 1, product_id: 1, quantity: 10)
