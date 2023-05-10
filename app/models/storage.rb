@@ -6,4 +6,5 @@ class Storage < ApplicationRecord
 
   validates :quantity, presence: true
   validates :quantity, numericality: { only_integer: true, minimum: 0 }
+  validates :store, uniqueness: true
 end
