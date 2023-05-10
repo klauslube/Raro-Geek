@@ -5,6 +5,8 @@ class Supplier < ApplicationRecord
   has_many :product_suppliers, dependent: :destroy
   has_many :products, through: :product_suppliers
 
-  validates :name, presence: true, length: { maximum: 255 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 255 }
   validates :CNPJ, presence: true, length: { maximum: 20 }, uniqueness: true
+
+  accepts_nested_attributes_for :address
 end

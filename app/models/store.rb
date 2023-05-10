@@ -5,8 +5,9 @@ class Store < ApplicationRecord
   has_many :storages, dependent: :destroy
   has_many :sales, dependent: :destroy
   has_many :products, through: :storages
-  # has_one :address, as: :addressable, dependent: :destroy
 
-  validates :name, presence: true, length: { maximum: 255 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 255 }
   validates :CNPJ, presence: true, length: { maximum: 20 }, uniqueness: true
+  
+  accepts_nested_attributes_for :address
 end
