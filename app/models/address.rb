@@ -10,4 +10,3 @@ class Address < ApplicationRecord
 
   accepts_nested_attributes_for :addressable
 end
-

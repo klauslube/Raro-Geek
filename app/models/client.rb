@@ -2,7 +2,7 @@
 
 class Client < ApplicationRecord
   belongs_to :address
-  
+
   has_many :sales, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }
@@ -10,4 +10,3 @@ class Client < ApplicationRecord
 
   accepts_nested_attributes_for :address
 end
-

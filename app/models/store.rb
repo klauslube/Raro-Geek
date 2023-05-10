@@ -8,6 +8,6 @@ class Store < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :CNPJ, presence: true, length: { maximum: 20 }, uniqueness: true
-  
+
   accepts_nested_attributes_for :address
 end
