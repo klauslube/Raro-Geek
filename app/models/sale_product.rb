@@ -12,16 +12,16 @@ class SaleProduct < ApplicationRecord
   after_create :update_storage
 
   def validate_product_availability
-    if quantity > available_quantity
-      errors.add(:quantity, "is greater than the available quantity")
-    end
+    return unless quantity > available_quantity
+
+    errors.add(:quantity, 'is greater than the available quantity')
+
     # sale.update(status: 2)
   end
 
   def available_quantity
-    Storage.where(store_id: sale.store_id, product_id: product_id).sum(:quantity)
+    Storage.where(store_id: sale.store_id, product_id:).sum(:quantity)
   end
-
 
   after_create :update_status
 
@@ -44,9 +44,9 @@ class SaleProduct < ApplicationRecord
   # end
 
   def update_storage
-    storage = Storage.find_by(store_id: sale.store_id, product_id: product_id)
-    if storage.present?
-      storage.update(quantity: storage.quantity - quantity)
-    end
+    storage = Storage.find_by(store_id: sale.store_id, product_id:)
+    return if storage.blank?
+
+    storage.update(quantity: storage.quantity - quantity)
   end
 end

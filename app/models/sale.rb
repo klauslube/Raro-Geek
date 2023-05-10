@@ -7,7 +7,7 @@ class Sale < ApplicationRecord
   has_many :sale_products, dependent: :destroy
   has_many :products, through: :sale_products
 
-  validates :finished, inclusion: [true,false]
+  validates :finished, inclusion: [true, false]
   validates :fiscal_number, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :total_amount, presence: true, numericality: { greater_than: 0 }
 
@@ -29,6 +29,4 @@ class Sale < ApplicationRecord
   #     storage.update(quantity: storage.quantity - sale_product.quantity) if storage.present?
   #   end
   # end
-  
-
 end
