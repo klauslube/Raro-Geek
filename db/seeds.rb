@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-# seeds.rb
-
 # Addresses
-Address.create(street: 'Rua Klaus', public_place: 'Av. Lube', zip_code: '12345678', number: '123', neighborhood: 'Centro', city: 'Rio de Janeiro', addressable_type: 'Client', addressable_id: 1)
-Address.create(street: 'Rua Andrade', public_place: 'Av. Guilherme', zip_code: '87654321', number: '456', neighborhood: 'Vila Madalena', city: 'São Paulo', addressable_type: 'Store', addressable_id: 1)
-Address.create(street: 'Rua Joao', public_place: 'Av. Guilherme', zip_code: '99999998', number: '456', neighborhood: 'Vila Madalena', city: 'São Paulo', addressable_type: 'Supplier', addressable_id: 1)
+Address.create(street: 'Rua Klaus', public_place: 'Av. Lube', zip_code: '12345678', number: '123',
+               neighborhood: 'Centro', city: 'Rio de Janeiro', addressable_type: 'Client', addressable_id: 1)
+Address.create(street: 'Rua Andrade', public_place: 'Av. Guilherme', zip_code: '87654321', number: '456',
+               neighborhood: 'Vila Madalena', city: 'São Paulo', addressable_type: 'Store', addressable_id: 1)
+Address.create(street: 'Rua Joao', public_place: 'Av. Guilherme', zip_code: '99999998', number: '456',
+               neighborhood: 'Vila Madalena', city: 'São Paulo', addressable_type: 'Supplier', addressable_id: 1)
 
 # Clients
 Client.create(name: 'João Silva', CPF: '12345678900', address_id: 1)
@@ -38,4 +39,3 @@ Sale.create(client_id: 2, store_id: 1, fiscal_number: '987654321', total_amount:
 # SaleProducts
 SaleProduct.create(sale_id: 1, product_id: 1, quantity: 10)
 SaleProduct.create(sale_id: 2, product_id: 2, quantity: 20)
-
