@@ -8,5 +8,9 @@ class Client < ApplicationRecord
   validates :name, presence: true, length: { maximum: 255 }
   validates :CPF, presence: true, length: { maximum: 15 }, uniqueness: true
 
-  accepts_nested_attributes_for :address
+  scope :by_name, ->(name) { where('name ILIKE ?', "%#{name}%") }
+  scope :by_cpf, ->(cpf) { where(cpf:) }
+  scope :by_city, ->(city_name) { joins(:address).where(addresses: { city: city_name }) }
+
+  scope :with_sales, -> { joins(:sales).distinct }
 end

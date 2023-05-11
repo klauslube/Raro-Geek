@@ -9,4 +9,7 @@ class Address < ApplicationRecord
   validates :number, length: { minimum: 1, maximum: 15 }
 
   accepts_nested_attributes_for :addressable
+
+  scope :by_city, ->(city) { where(city:) }
+  scope :by_zip_code, ->(zip_code) { where(zip_code:) }
 end
