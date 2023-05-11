@@ -12,7 +12,6 @@ class Product < ApplicationRecord
   validates :unit_price, presence: true, numericality: { greater_than: 0 }
   validates :description, presence: true
 
-
-  scope :available_in_store, ->(store_id) { joins(:storages).where(storages: { store_id: store_id }) }
+  scope :available_in_store, ->(store_id) { joins(:storages).where(storages: { store_id: }) }
   scope :product_alphabetical_order, -> { order(name: :asc) }
 end

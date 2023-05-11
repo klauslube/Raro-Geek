@@ -6,7 +6,9 @@ class Supplier < ApplicationRecord
   has_many :products, through: :product_suppliers
 
   validates :name, presence: true, length: { maximum: 255 }
-  validates :CNPJ, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :CNPJ, presence: true, length: { minimum: 10, maximum: 20 }, uniqueness: true
 
-  accepts_nested_attributes_for :address
+  scope :by_city, ->(city) { joins(:address).where(addresses: { city: }) }
+  scope :by_cnpj, ->(cnpj) { where(CNPJ: cnpj) }
+  scope :with_products, -> { joins(:products).distinct }
 end
