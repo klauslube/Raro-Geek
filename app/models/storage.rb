@@ -7,4 +7,6 @@ class Storage < ApplicationRecord
   validates :quantity, presence: true
   validates :quantity, numericality: { only_integer: true, minimum: 0 }
   validates :store, uniqueness: true
+
+  scope :available_quantity, -> (sale_product, prod){where(store: sale_product.sale.store, product: prod ).sum(:quantity)}
 end

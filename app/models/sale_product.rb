@@ -12,25 +12,9 @@ class SaleProduct < ApplicationRecord
   after_create :update_storage
 
   def validate_product_availability
-    return unless quantity > available_quantity
+    return unless quantity > Storage.available_quantity(self, product)
 
     errors.add(:quantity, 'is greater than the available quantity')
-
-    # sale.update(status: 2)
-  end
-
-  def available_quantity
-    Storage.where(store_id: sale.store_id, product_id:).sum(:quantity)
-  end
-
-  after_create :update_status
-
-  def update_status
-    if sale_product.errors.empty?
-      sale.update(status: 2)
-    else
-      sale.update(status: 3)
-    end
   end
 
   # after_create :set_total_amount
